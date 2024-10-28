@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sero</title>
   <link rel="stylesheet" href="css/css.css">
+  <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -53,17 +54,17 @@
   </div>
 
   <!-- Видео на фоне -->
-  <div id="video-background" class="video-background" style="display: none;">
-    <iframe src="https://www.youtube.com/embed/Z0FDlWCKlts?autoplay=1&controls=0&loop=1&playlist=Z0FDlWCKlts" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
+<div id="video-background" class="video-background" style="display: none;">
+  <iframe
+    src="https://www.youtube.com/embed/Z0FDlWCKlts?autoplay=1&controls=0&loop=1&playlist=Z0FDlWCKlts&mute=0&playsinline=1"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+</div>
+
 
   <script src="js/js.js"></script>
-  <script>
-    document.getElementById('enter-button').onclick = function() {
-      document.getElementById('welcome-screen').style.display = 'none';
-      document.getElementById('main-content').style.display = 'flex';
-      document.getElementById('video-background').style.display = 'block';
-    }
-  </script>
+
 </body>
 </html>
