@@ -1,34 +1,14 @@
-let player;
-
-// Инициализация API YouTube
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player("video-player", {
-    videoId: "Z0FDlWCKlts", // ID видео
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      loop: 1,
-      mute: 1,
-      playlist: "Z0FDlWCKlts", // Для зацикливания видео
-      playsinline: 1
-    },
-    events: {
-      onReady: function (event) {
-        event.target.playVideo(); // Автозапуск видео при готовности
-      }
-    }
-  });
-}
-
-// Код для показа основного контента и запуска видео
 document.getElementById("enter-button").onclick = function () {
   document.getElementById("welcome-screen").style.display = "none";
   document.getElementById("main-content").style.display = "flex";
   document.getElementById("video-background").style.display = "block";
-  
-  if (player && player.playVideo) {
-    player.playVideo(); // Проигрывание видео, если оно готово
-  }
+
+  // Включаем звук при нажатии кнопки
+  const video = document.getElementById("background-video");
+  video.muted = false;
+  video.play().catch(error => {
+    console.log("Автозапуск с включенным звуком заблокирован браузером.");
+  });
 };
 
 // Код для показа окна при нажатии ПКМ или F12
@@ -56,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(overlay);
 
   function showAlert() {
-    if (alertVisible) return; // Блокируем повторный показ, пока виден alert
+    if (alertVisible) return;
     alertVisible = true;
     overlay.style.display = "block";
     setTimeout(() => {
