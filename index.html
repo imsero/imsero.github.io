@@ -10,13 +10,19 @@
 <body>
 
 <div class="dark-overlay"></div>
+<div class="snowfall"></div>
 <div id="inspect-message">
-  <p>какова хуя инспектируеш</p>
+  <p>hi</p>
 </div>
 
   <!-- Этап 1: экран приветствия -->
   <div id="welcome-screen" class="welcome-screen">
-    <button id="enter-button" class="enter-button">></button>
+    <button id="enter-button" class="gradient-button">
+      <svg class="play-icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M8 5v14l11-7z"/>
+      </svg>
+      <span>C L I C K</span>
+    </button>
   </div>
 
   <!-- Этап 2: основной контент -->
@@ -30,23 +36,23 @@
 
         <div class="card-social">
           <a href="https://steamcommunity.com/id/seromne/" target="_blank" class="social-button steam-button">
-            <img src="https://img.icons8.com/?size=512&id=zNqjI8XKkCv0&format=png" alt="Steam">
+            <img src="https://cdn.icon-icons.com/icons2/3053/PNG/512/steam_macos_bigsur_icon_189699.png" alt="Steam">
           </a>
           <a href="https://t.me/quasarexplosion/" target="_blank" class="social-button telegram-button">
-            <img src="https://img.icons8.com/?size=512&id=63306&format=png" alt="Telegram">
+            <img src="https://cdn.icon-icons.com/icons2/4048/PNG/512/telegram_logo_icon_257011.png" alt="Telegram">
           </a>
           <a href="https://vk.com/zaebalo_eto_vse/" target="_blank" class="social-button vk-button">
-            <img src="https://img.icons8.com/?size=512&id=114452&format=png" alt="VK">
+            <img src="https://cdn.icon-icons.com/icons2/4048/PNG/512/vk_logo_icon_257013.png" alt="VK">
           </a>
           <a href="https://discord.gg/JBUjHU3GRX/" target="_blank" class="social-button discord-button">
-            <img src="https://img.icons8.com/color/discord" alt="Discord">
+            <img src="https://cdn.icon-icons.com/icons2/3053/PNG/512/discord_alt_macos_bigsur_icon_190237.png" alt="Discord">
           </a>
         </div>
       </div>
       <div class="card-main">
         <div class="card-content"></div>
         <p class="card-desc">
-          <span class="title">LUA MIDDLE DEVELOPER</span>
+          <span class="title">HQ LUA DEVELOPER</span>
           <span class="languages">since 2017</span>
         </p>
       </div>
@@ -55,7 +61,7 @@
 
   <!-- Видео на фоне -->
   <div id="video-background" class="video-background" style="display: none;">
-    <video id="background-video" muted loop playsinline>
+    <video id="background-video" loop playsinline>
       <source src="video/background.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
