@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
     transition: opacity 0.3s;
     z-index: 9999;
   `;
-  overlay.textContent = "hi";
+  overlay.textContent = "нахуй";
   overlay.style.opacity = "0";
   overlay.style.display = "none";
   document.body.appendChild(overlay);
