@@ -2,6 +2,10 @@
 
 * {
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -23,14 +27,48 @@ body {
 }
 
 .enter-button {
-  padding: 15px 30px;
-  font-size: 20px;
-  color: white;
-  background-color: #0d0d0d;
+  display: none;
+}
+
+.gradient-button {
+  font-family: "Jost", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 40px;
+  font-size: 24px;
+  color: #fff;
+  background: linear-gradient(45deg,
+    #000,    /* Very dark red */
+    #141414,    /* Dark blood red */
+    #1c1c1c,    /* Pure red */
+    #000    /* Dark crimson */
+  );
+  background-size: 200% 200%;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
-  z-index: 3;
+  transition: all 0.3s ease;
+  animation: gradientMove 3s ease infinite;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+.gradient-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .main-content {
@@ -43,58 +81,16 @@ body {
 .card {
   position: relative;
   width: 300px;
-  background: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон */
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); /* Свечение по краям */
-  backdrop-filter: blur(10px); /* Эффект блюра на фоне */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
 }
+
 .card[data-state="#about"] {
   height: 350px;
-  .card-main {
-    padding-top: 0;
-  }
-}
-
-.card[data-state="#experience"] {
-  height: 550px;
-}
-
-.card.is-active {
-  .card-header {
-    height: 80px;
-  }
-
-  .card-cover {
-    height: 100px;
-    top: -50px;
-  }
-
-  .card-avatar {
-    transform: none;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    bottom: 10px;
-  }
-
-  .card-fullname,
-  .card-jobtitle {
-    left: 86px;
-    transform: none;
-  }
-
-  .card-fullname {
-    bottom: 18px;
-    font-size: 19px;
-  }
-
-  .card-jobtitle {
-    bottom: 16px;
-    letter-spacing: 1px;
-    font-size: 10px;
-  }
 }
 
 .card-header {
@@ -104,10 +100,6 @@ body {
   flex-shrink: 0;
   width: 100%;
   transition: 0.3s;
-
-  * {
-    transition: 0.3s;
-  }
 }
 
 .card-cover {
@@ -171,58 +163,118 @@ body {
   flex-direction: column;
 }
 
-.card-subtitle {
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
 .card-content {
   padding: 20px;
 }
+
 .card-desc {
-    font-family: 'Jost', sans-serif; /* Шрифт */
-    font-size: 14px; /* Общий размер шрифта */
-    line-height: 1.6; /* Улучшаем читаемость */
-    color: #fff; /* Цвет текста */
-    background-color: rgba(0, 0, 0, 0); /* Прозрачный фон */
-    padding: 15px; /* Внутренние отступы */
-    border-radius: 8px; /* Закругление углов */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
-    max-width: 300px; /* Максимальная ширина элемента */
-    margin: 10px auto; /* Центрируем элемент */
-    text-align: center; /* Центрируем текст */
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 10px auto;
+  text-align: center;
 }
 
 .card-desc span {
-    display: block; /* Разделение строк */
-    margin-bottom: 3px; /* Отступы между строками */
+  display: block;
+  margin-bottom: 3px;
 }
 
 .card-desc .title {
-    font-size: 20px; /* Размер текста для заголовка */
-    font-weight: bold; /* Жирный шрифт для заголовка */
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .card-desc .languages {
-    font-size: 18px; /* Размер текста для языков программирования */
-    color: #d9e1ff; /* Цвет для языков программирования */
-    white-space: nowrap; /* Запрет на перенос строк */
-    margin-left: -5px; /* Сдвиг влево */
-    text-align: center; /* Центрируем текст */
-    display: inline-block; /* Позволяет элементу занимать только нужную ширину */
-    margin-top: 5px; /* Отступ сверху для лучшего визуального разделения */
+  font-size: 18px;
+  color: #d9e1ff;
+  white-space: nowrap;
+  margin-left: -5px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 5px;
 }
 
+.card-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 60px);
+  width: 100%;
+  overflow: visible;
+  z-index: 10;
+}
 
+.social-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 0 13px;
+  transition: background-color 0.3s, transform 0.3s;
+}
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translatey(40px);
+.social-button img {
+  width: 44px;
+  height: 44px;
+  transition: transform 0.2s;
+}
+
+.social-button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  transform: scale(1.1);
+}
+
+.social-button:hover img {
+  transform: scale(1.1);
+}
+
+.card.is-active {
+  .card-header {
+    height: 80px;
   }
-  100% {
-    opacity: 1;
+
+  .card-cover {
+    height: 100px;
+    top: -50px;
+  }
+
+  .card-avatar {
+    transform: none;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+  }
+
+  .card-fullname,
+  .card-jobtitle {
+    left: 86px;
+    transform: none;
+  }
+
+  .card-fullname {
+    bottom: 18px;
+    font-size: 19px;
+  }
+
+  .card-jobtitle {
+    bottom: 16px;
+    letter-spacing: 1px;
+    font-size: 10px;
   }
 }
 
@@ -288,7 +340,6 @@ body {
   line-height: 1.6;
 }
 
-
 .dark-overlay {
   position: fixed;
   top: 0;
@@ -296,80 +347,13 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой */
-  z-index: 0; /* Позади основного контента */
+  z-index: 2; /* Позади основного контента */
   pointer-events: none; /* Отключаем взаимодействие с слоем */
 }
 
-
-
-.card-social {
-  display: flex;
-  justify-content: center; /* Центрирование кнопок по горизонтали */
-  align-items: center; /* Центрирование кнопок по вертикали */
-  padding: 0px 0; /* Отступы сверху и снизу */
-  position: absolute; /* Позиционирование по абсолюту для центровки */
-  bottom: 0px; /* Расположение кнопок чуть выше */
-  left: 50%; /* Сдвиг влево на 50% */
-  transform: translate(-50%, 60px); /* Смещаем ниже с помощью translate */
-  width: 100%; /* Ширина блока с кнопками */
-  overflow: visible; /* Делает элементы видимыми за пределами контейнера */
-  z-index: 10; /* Устанавливаем высокий z-index, чтобы кнопки располагались выше других элементов */
-
+.card {
+  z-index: 10;
 }
-
-.social-button {
-  width: 50px; /* Ширина кнопки */
-  height: 50px; /* Высота кнопки */
-  border-radius: 50%; /* Круглая форма */
-  display: flex;
-  align-items: center; /* Центрирование содержимого */
-  justify-content: center; /* Центрирование содержимого */
-  background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
-  margin: 0 10px; /* Отступ между кнопками */
-  transition: background-color 0.3s, transform 0.3s; /* Плавный переход фона и размера */
-}
-
-.social-button img {
-  width: 105%; /* Ширина изображения внутри кнопки */
-  height: auto; /* Автоматическая высота */
-  transition: transform 0.3s; /* Плавный переход размера изображения */
-}
-
-.social-button:hover {
-  background-color: rgba(255, 255, 255, 0.3); /* Изменение фона при наведении */
-  transform: scale(1.1); /* Увеличение кнопки при наведении */
-}
-
-.social-button:hover img {
-  transform: scale(1.1); /* Увеличение изображения при наведении */
-}
-
-/* Модальное окно для сообщения */
-#inspect-message {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 20px;
-  width: 80%;
-  max-width: 400px;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  opacity: 0; /* Скрыто по умолчанию */
-  transition: opacity 0.5s ease; /* Плавное изменение прозрачности */
-  display: none;
-  z-index: 100;
-}
-
-#inspect-message.show {
-  display: block;
-  opacity: 1; /* Показать с плавной анимацией */
-}
-
 
 .video-background {
   position: fixed;
@@ -378,7 +362,7 @@ body {
   width: 100vw; /* Полная ширина экрана */
   height: 100vh; /* Полная высота экрана */
   overflow: hidden;
-  z-index: -1; /* Позади всех остальных элементов */
+  z-index: 1; /* Позади всех остальных элементов */
 }
 
 .video-background video {
@@ -406,4 +390,69 @@ body {
 #audio-visualizer {
   width: 100%;
   height: 100%;
+}
+
+.audio-visualizer-overlay {
+  display: none;
+}
+
+.snowfall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.6);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease-out;
+  pointer-events: auto;
+}
+
+.snowflake.active {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh) translateX(0);
+  }
+  100% {
+    transform: translateY(100vh) translateX(20px);
+  }
+}
+
+/* Модальное окно для сообщения */
+#inspect-message {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  opacity: 0; /* Скрыто по умолчанию */
+  transition: opacity 0.5s ease; /* Плавное изменение прозрачности */
+  display: none;
+  z-index: 9999;
+}
+
+#inspect-message.show {
+  display: block;
+  opacity: 1; /* Показать с плавной анимацией */
 }
